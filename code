@@ -1,0 +1,19 @@
+from chatterbot import ChatBot
+mybot= ChatBot(name='calculator', read_only=True, 
+                logic_adapters=["chatterbot.logic.MathematicalEvaluation"],
+                storage_adapters= "chatterbot.storage.SQlStorageAdapter")
+
+print('\033c')
+print("hello i am a calculator, how can i help uh:")
+while(True):
+  user_input= input("me: ")
+  
+  if user_input.lower()== 'quit':
+    print("exiting")
+    break
+
+  try:
+    response= mybot.get_response(user_input)
+    print("calculator:",response)
+  except:
+    print("calculator: please enter valid input!")
